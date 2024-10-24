@@ -6,7 +6,6 @@ const key = CryptoJS.enc.Utf8.parse('359866a57ed21eb0d780abba95cd08c3')
 const iv = CryptoJS.enc.Utf8.parse('7ed21eb0d780abba')
 
 function encrypt(plaintext) {
-  console.log(plaintext)
   const encryptedContent = CryptoJS.AES.encrypt(plaintext, key, {
     iv: iv,
     mode: CryptoJS.mode.CBC,

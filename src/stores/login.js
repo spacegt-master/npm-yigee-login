@@ -11,7 +11,6 @@ export const useLoginStore = defineStore('login', () => {
       const res = await getUserinfoApi(cookies.get('USER_CERTIFICATE'))
       Object.keys(info).forEach(key => (info[key] = res[key]))
     }
-    console.log(info)
   }
   const logout = info => {
     const iframe = document.createElement('iframe')

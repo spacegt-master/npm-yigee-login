@@ -60,7 +60,7 @@ app.mount("#app");
 
 ```
 <template>
-  <NpmYigeeLogin :account-info="info">
+  <npm-yigee-login :account-info="info">
     <template #login="{ login }">
       <el-avatar class="notlogin" :size="34" @click="login()">
         <img src="../../assets/avatar-login.png" />
@@ -81,7 +81,7 @@ app.mount("#app");
         </div>
       </el-popover>
     </template>
-  </NpmYigeeLogin>
+  </npm-yigee-login>
 </template>
 ```
 
