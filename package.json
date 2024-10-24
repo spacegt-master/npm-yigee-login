@@ -1,6 +1,6 @@
 {
   "name": "npm-yigee-login",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "license": "Spacegt",
   "type": "module",
   "repository": {
@@ -17,8 +17,10 @@
     ".": {
       "import": "./dist/npm-yigee-login.js",
       "require": "./dist/npm-yigee-login.umd.cjs"
-    }
+    },
+    "./*": "./*"
   },
+  "style": "./dist/style.css",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

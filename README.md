@@ -44,6 +44,7 @@ npm i npm-yigee-login
 import { createApp } from 'vue'
 // 引入插件
 import npmYigeeLogin from "npm-yigee-login";
+import "npm-yigee-login/dist/style.css";
 
 const app = createApp({
   /* ... */
