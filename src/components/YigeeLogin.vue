@@ -1,14 +1,13 @@
 <script setup>
-import {
-    ref
-} from 'vue'
-import {
-    useLoginStore
-} from '../stores/login.js'
+import { ref, onMounted } from 'vue'
+import { useLoginStore } from '../stores/login.js'
+import Cookies from 'universal-cookie'
+import user_certificate from '@/utils/user_certificate.js';
 
 const props = defineProps({
     accountInfo: Object,
 })
+const cookies = new Cookies()
 const loginPath = import.meta.env.VITE_APP_LOGIN_PATH
 const loginStore = useLoginStore()
 const emit = defineEmits(['success', 'failure'])
@@ -16,6 +15,7 @@ const iframeRef = ref()
 const dialogVisible = ref(false)
 const loading = ref(true)
 const origin = ref(window.location.origin)
+const invisible = ref(false)
 
 window.addEventListener("message", receiveMessage, false);
 
@@ -24,13 +24,28 @@ function receiveMessage(event) {
     if (origin == loginPath) {
         if (event.data == 'login-success') {
             loginStore.getUserinfo(props.accountInfo).then(() => {
-                dialogVisible.value = false
                 emit('success');
-            }).catch(() => emit('failure'))
-        } else if (event.data == 'login-loaded')
+                dialogVisible.value = false
+            }).catch(() => {
+                emit('failure')
+            })
+        } else if (event.data == 'login-loaded') {
             loading.value = false
+        }
     }
 }
+
+onMounted(() => {
+    const cert = cookies.get("USER_CERTIFICATE")
+    if (user_certificate.verify(cert)) {
+        invisible.value = true
+        dialogVisible.value = true
+        setTimeout(() => {
+            invisible.value = false
+            dialogVisible.value = false
+        }, 1000)
+    }
+})
 </script>
 <template>
     <div>
@@ -43,7 +58,8 @@ function receiveMessage(event) {
             </el-avatar>
         </slot>
         <!-- <slot v-else name="login" :login="() => dialogVisible = true"></slot> -->
-        <el-dialog v-model="dialogVisible" width="auto" align-center class="login-dialog">
+        <el-dialog v-model="dialogVisible" width="auto" align-center class="login-dialog"
+            :class="{ 'invisible': invisible }" :modal="!invisible" @closed="invisible = false">
             <div class="loading" v-show="loading" v-loading="loading"> </div>
             <iframe v-show="!loading" ref="iframeRef" :src="`${loginPath}?origin=${origin}&domain=.yigee.cn`"></iframe>
         </el-dialog>
@@ -71,6 +87,10 @@ iframe {
 }
 </style>
 <style>
+.login-dialog.invisible {
+    display: none;
+}
+
 .login-dialog.el-dialog {
     background: #ffffff;
     box-shadow: none;

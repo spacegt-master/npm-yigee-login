@@ -1,5 +1,5 @@
 <script setup>
-import NpmYigeeLogin from './components/login.vue';
+import YigeeLogin from './components/YigeeLogin.vue';
 import { ref } from 'vue'
 
 const info = ref({
@@ -15,10 +15,10 @@ const info = ref({
 </script>
 
 <template>
-  <NpmYigeeLogin :account-info="info">
+  <yigee-login :account-info="info">
     <template #login="{ login }">
       <el-avatar class="notlogin" :size="34" @click="login()">
-        <img src="../../assets/avatar-login.png" />
+        <img src="./assets/avatar-login.png" />
       </el-avatar>
     </template>
     <template #info="{ logout }">
@@ -36,7 +36,7 @@ const info = ref({
         </div>
       </el-popover>
     </template>
-  </NpmYigeeLogin>
+  </yigee-login>
 </template>
 
 <style scoped></style>

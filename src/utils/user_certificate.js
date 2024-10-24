@@ -33,6 +33,7 @@ function create(message, time) {
 }
 
 function verify(ciphertext) {
+  if (!ciphertext) return false
   try {
     const data = analyze(ciphertext)
     return Date.now() < data.validity

@@ -1,6 +1,6 @@
 {
-  "name": "npm-yigee-login",
-  "version": "1.0.10",
+  "name": "yigee-login",
+  "version": "1.0.11",
   "license": "Spacegt",
   "type": "module",
   "repository": {
@@ -11,12 +11,12 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/npm-yigee-login.umd.cjs",
-  "module": "./dist/npm-yigee-login.js",
+  "main": "./dist/yigee-login.umd.cjs",
+  "module": "./dist/yigee-login.js",
   "exports": {
     ".": {
-      "import": "./dist/npm-yigee-login.js",
-      "require": "./dist/npm-yigee-login.umd.cjs"
+      "import": "./dist/yigee-login.js",
+      "require": "./dist/yigee-login.umd.cjs"
     },
     "./*": "./*"
   },

@@ -25,8 +25,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'lib/main.js'),
-      name: 'npmYigeeLogin',
-      fileName: 'npm-yigee-login',
+      name: 'YigeeLogin',
+      fileName: 'yigee-login',
     },
     rollupOptions: {
       external: [

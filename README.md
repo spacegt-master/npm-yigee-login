@@ -1,4 +1,4 @@
-# npm-yigee-login
+# yigee-login
 
 Yigee 登录通用组件，由 Vue3 + Vite 开发.
 
@@ -30,10 +30,10 @@ npm i universal-cookie
 
 ## 安装插件
 
-[npm-yigee-login](https://www.npmjs.com/package/npm-yigee-login)
+[yigee-login](https://www.npmjs.com/package/yigee-login)
 
 ```
-npm i npm-yigee-login
+npm i yigee-login
 ```
 
 ## 使用插件
@@ -43,8 +43,8 @@ npm i npm-yigee-login
 ```
 import { createApp } from 'vue'
 // 引入插件
-import npmYigeeLogin from "npm-yigee-login";
-import "npm-yigee-login/dist/style.css";
+import npmYigeeLogin from "yigee-login";
+import "yigee-login/dist/style.css";
 
 const app = createApp({
   /* ... */
@@ -60,7 +60,7 @@ app.mount("#app");
 
 ```
 <template>
-  <npm-yigee-login :account-info="info">
+  <yigee-login :account-info="info">
     <template #login="{ login }">
       <el-avatar class="notlogin" :size="34" @click="login()">
         <img src="../../assets/avatar-login.png" />
@@ -81,7 +81,7 @@ app.mount("#app");
         </div>
       </el-popover>
     </template>
-  </npm-yigee-login>
+  </yigee-login>
 </template>
 ```
 
