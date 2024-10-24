@@ -40,10 +40,6 @@ onMounted(() => {
     if (user_certificate.verify(cert)) {
         invisible.value = true
         dialogVisible.value = true
-        setTimeout(() => {
-            invisible.value = false
-            dialogVisible.value = false
-        }, 1000)
     }
 })
 </script>
@@ -58,7 +54,7 @@ onMounted(() => {
             </el-avatar>
         </slot>
         <!-- <slot v-else name="login" :login="() => dialogVisible = true"></slot> -->
-        <el-dialog v-model="dialogVisible" width="auto" align-center class="login-dialog"
+        <el-dialog v-model="dialogVisible" width="auto" class="login-dialog" append-to-body align-center
             :class="{ 'invisible': invisible }" :modal="!invisible" @closed="invisible = false">
             <div class="loading" v-show="loading" v-loading="loading"> </div>
             <iframe v-show="!loading" ref="iframeRef" :src="`${loginPath}?origin=${origin}&domain=.yigee.cn`"></iframe>
