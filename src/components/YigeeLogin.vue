@@ -5,11 +5,7 @@ import Cookies from 'universal-cookie'
 import user_certificate from '@/utils/user_certificate.js';
 
 const props = defineProps({
-    accountInfo: Object,
-    aimosoOrg: {
-        type: String,
-        default: ''
-    }
+    accountInfo: Object
 })
 const cookies = new Cookies()
 const loginPath = import.meta.env.VITE_APP_LOGIN_PATH
@@ -19,6 +15,7 @@ const iframeRef = ref()
 const dialogVisible = ref(false)
 const loading = ref(true)
 const origin = ref(window.location.origin)
+const aimosoOrg = ref('')
 const invisible = ref(false)
 
 window.addEventListener("message", receiveMessage, false);
@@ -40,11 +37,16 @@ function receiveMessage(event) {
 }
 
 onMounted(() => {
+    const params = new URLSearchParams(location.search)
+    if (params.get('aimoso-org')) {
+        aimosoOrg.value = params.get('aimoso-org');
+    }
     const cert = cookies.get("USER_CERTIFICATE")
     if (user_certificate.verify(cert)) {
         invisible.value = true
         dialogVisible.value = true
     }
+
 })
 </script>
 <template>
