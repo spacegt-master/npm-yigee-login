@@ -6,7 +6,10 @@ import user_certificate from '@/utils/user_certificate.js';
 
 const props = defineProps({
     accountInfo: Object,
-    aimosoOrg: String
+    aimosoOrg: {
+        type: String,
+        default: ''
+    }
 })
 const cookies = new Cookies()
 const loginPath = import.meta.env.VITE_APP_LOGIN_PATH
@@ -54,7 +57,6 @@ onMounted(() => {
                 <img src="../assets/avatar-login.png" />
             </el-avatar>
         </slot>
-        <!-- <slot v-else name="login" :login="() => dialogVisible = true"></slot> -->
         <el-dialog v-model="dialogVisible" width="auto" class="login-dialog" append-to-body align-center
             :class="{ 'invisible': invisible }" :modal="!invisible" @closed="invisible = false">
             <div class="loading" v-show="loading" v-loading="loading"> </div>
