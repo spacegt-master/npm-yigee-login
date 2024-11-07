@@ -15,7 +15,7 @@ const info = ref({
 </script>
 
 <template>
-  <yigee-login :account-info="info">
+  <yigee-login :account-info="info" aimoso-org="6538f3932a3c305c9d11bfe1">
     <template #login="{ login }">
       <el-avatar class="notlogin" :size="34" @click="login()">
         <img src="./assets/avatar-login.png" />

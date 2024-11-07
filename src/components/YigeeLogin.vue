@@ -6,6 +6,7 @@ import user_certificate from '@/utils/user_certificate.js';
 
 const props = defineProps({
     accountInfo: Object,
+    aimosoOrg: String
 })
 const cookies = new Cookies()
 const loginPath = import.meta.env.VITE_APP_LOGIN_PATH
@@ -57,7 +58,8 @@ onMounted(() => {
         <el-dialog v-model="dialogVisible" width="auto" class="login-dialog" append-to-body align-center
             :class="{ 'invisible': invisible }" :modal="!invisible" @closed="invisible = false">
             <div class="loading" v-show="loading" v-loading="loading"> </div>
-            <iframe v-show="!loading" ref="iframeRef" :src="`${loginPath}?origin=${origin}&domain=.yigee.cn`"></iframe>
+            <iframe v-show="!loading" ref="iframeRef" allow="accelerometer *; gyroscope *;"
+                :src="`${loginPath}?origin=${origin}&domain=.yigee.cn&aimoso-org=${aimosoOrg}`"></iframe>
         </el-dialog>
     </div>
 </template>
